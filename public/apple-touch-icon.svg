@@ -1,0 +1,20 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with rounded corners -->
+  <rect width="180" height="180" rx="32" fill="#3b82f6"/>
+  
+  <!-- Main container -->
+  <rect x="30" y="60" width="120" height="60" rx="8" fill="#ffffff" stroke="#1e40af" stroke-width="3"/>
+  
+  <!-- Timestamp display -->
+  <text x="90" y="95" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="20" font-weight="bold">123</text>
+  <text x="90" y="115" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="10">TIMESTAMP</text>
+  
+  <!-- Success indicator -->
+  <circle cx="135" cy="75" r="12" fill="#10b981"/>
+  <path d="M131 75L134 78L139 73" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Decorative elements -->
+  <rect x="45" y="140" width="20" height="4" rx="2" fill="#e2e8f0"/>
+  <rect x="75" y="140" width="30" height="4" rx="2" fill="#cbd5e1"/>
+  <rect x="115" y="140" width="20" height="4" rx="2" fill="#e2e8f0"/>
+</svg>

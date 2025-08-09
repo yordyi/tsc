@@ -11,11 +11,21 @@ import { CodeExamples } from '@/components/CodeExamples';
 import { FAQ } from '@/components/FAQ';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';
+import { RelatedLinks, generateRelatedLinksSchema } from '@/components/RelatedLinks';
+import { usePathname } from 'next/navigation';
+import Head from 'next/head';
 
 export default function TimestampConverterPage() {
   const { isDarkMode } = useAppStore();
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState('single');
+  const pathname = '/timestamp-converter';
+  
+  // 生成面包屑和相关链接的结构化数据
+  const breadcrumbItems = generateBreadcrumb(pathname);
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const relatedLinksSchema = generateRelatedLinksSchema(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -28,44 +38,44 @@ export default function TimestampConverterPage() {
   // FAQ data specific to timestamp converter
   const timestampFAQ = [
     {
-      question: "什么是时间戳转换器？",
-      answer: "时间戳转换器是一个将Unix时间戳（自1970年1月1日以来的秒数或毫秒数）转换为人类可读日期格式的在线工具。它支持双向转换：时间戳到日期和日期到时间戳。"
+      question: "What is a timestamp converter?",
+      answer: "A timestamp converter is an online tool that converts Unix timestamps (seconds or milliseconds since January 1, 1970) into human-readable date formats. It supports bidirectional conversion: timestamp to date and date to timestamp."
     },
     {
-      question: "如何使用时间戳转换器？",
-      answer: "使用非常简单：1）在输入框中输入Unix时间戳或选择日期；2）选择时区（默认UTC）；3）点击转换按钮即可看到结果。支持秒级和毫秒级时间戳。"
+      question: "How do I use the timestamp converter?",
+      answer: "It's very simple: 1) Enter a Unix timestamp in the input field or select a date; 2) Choose your timezone (default UTC); 3) Click the convert button to see the result. Supports both second and millisecond timestamps."
     },
     {
-      question: "时间戳转换器支持哪些格式？",
-      answer: "支持多种格式：Unix时间戳（10位和13位）、ISO 8601格式、RFC 3339格式，以及自定义日期格式。同时支持不同时区的转换。"
+      question: "What formats does the timestamp converter support?",
+      answer: "Supports multiple formats: Unix timestamps (10 and 13 digits), ISO 8601 format, RFC 3339 format, and custom date formats. Also supports conversion between different timezones."
     },
     {
-      question: "时间戳转换的准确性如何？",
-      answer: "我们的转换器精确到毫秒级别，使用标准的JavaScript Date对象和经过验证的算法。所有计算都在本地执行，确保准确性和隐私安全。"
+      question: "How accurate is timestamp conversion?",
+      answer: "Our converter is precise to the millisecond level, using standard JavaScript Date objects and verified algorithms. All calculations are performed locally, ensuring accuracy and privacy security."
     },
     {
-      question: "是否支持批量时间戳转换？",
-      answer: "是的，支持批量转换功能。您可以一次性输入多个时间戳（换行分隔），系统会同时处理并显示所有结果。支持CSV格式导出。"
+      question: "Does it support batch timestamp conversion?",
+      answer: "Yes, batch conversion is supported. You can input multiple timestamps at once (separated by newlines), and the system will process and display all results simultaneously. Supports CSV format export."
     },
     {
-      question: "时间戳转换器是否免费使用？",
-      answer: "完全免费！无需注册、无使用限制、无广告干扰。所有功能都是免费的，包括批量转换和代码示例。"
+      question: "Is the timestamp converter free to use?",
+      answer: "Completely free! No registration required, no usage limits, no ads. All features are free, including batch conversion and code examples."
     },
     {
-      question: "支持哪些时区？",
-      answer: "支持全球所有标准时区，包括UTC、GMT、EST、PST、CST等。自动处理夏令时调整，确保时区转换的准确性。"
+      question: "Which timezones are supported?",
+      answer: "Supports all global standard timezones, including UTC, GMT, EST, PST, CST, and more. Automatically handles daylight saving time adjustments to ensure timezone conversion accuracy."
     },
     {
-      question: "转换结果可以导出吗？",
-      answer: "支持多种导出格式：CSV、JSON、XML和纯文本。批量转换结果可以直接下载，方便数据分析和进一步处理。"
+      question: "Can conversion results be exported?",
+      answer: "Supports multiple export formats: CSV, JSON, XML, and plain text. Batch conversion results can be downloaded directly for data analysis and further processing."
     },
     {
-      question: "移动设备上能正常使用吗？",
-      answer: "完全响应式设计，在手机、平板和桌面设备上都能完美使用。触摸友好的界面，专门针对移动设备优化。"
+      question: "Does it work properly on mobile devices?",
+      answer: "Fully responsive design that works perfectly on phones, tablets, and desktop devices. Touch-friendly interface specifically optimized for mobile devices."
     },
     {
-      question: "数据隐私和安全性如何？",
-      answer: "所有转换都在您的浏览器本地完成，不会向服务器发送任何数据。完全离线工作，保护您的隐私和数据安全。"
+      question: "How about data privacy and security?",
+      answer: "All conversions are performed locally in your browser without sending any data to servers. Works completely offline, protecting your privacy and data security."
     }
   ];
 
@@ -74,7 +84,19 @@ export default function TimestampConverterPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900">
         <Header />
         
+        {/* SEO结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([breadcrumbSchema, relatedLinksSchema])
+          }}
+        />
+        
         <main className="max-w-7xl mx-auto px-4 pb-12" data-page="timestamp-converter">
+          {/* 面包屑导航 */}
+          <div className="pt-6 pb-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -463,6 +485,9 @@ export default function TimestampConverterPage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* 相关工具推荐 */}
+          <RelatedLinks currentPage={pathname} className="mb-16" />
         </main>
 
         <Footer />

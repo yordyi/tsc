@@ -2,28 +2,30 @@
 
 import { motion } from 'framer-motion';
 import { Clock, Heart, Code2, Github, Twitter, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const links = {
     product: [
-      { name: 'Timestamp Converter', href: '#converter' },
-      { name: 'Batch Converter', href: '#batch' },
-      { name: 'API Documentation', href: '#api' },
-      { name: 'Code Examples', href: '#examples' },
+      { name: 'Timestamp Converter', href: '/timestamp-converter' },
+      { name: 'Unix Converter', href: '/unix-timestamp-converter' },
+      { name: 'Epoch Converter', href: '/epoch-converter' },
+      { name: 'Timestamp to Date', href: '/timestamp-to-date' },
+      { name: 'Online Converter', href: '/online-timestamp-converter' },
+    ],
+    tools: [
+      { name: 'Batch Converter', href: '/#batch' },
+      { name: 'Code Examples', href: '/#examples' },
+      { name: 'Conversion History', href: '/#history' },
+      { name: 'API Documentation', href: '/#api' },
     ],
     resources: [
-      { name: 'What is Unix Timestamp?', href: '#learn' },
-      { name: 'Programming Guides', href: '#guides' },
-      { name: 'Best Practices', href: '#practices' },
-      { name: 'Troubleshooting', href: '#help' },
-    ],
-    company: [
-      { name: 'About', href: '#about' },
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' },
-      { name: 'Contact', href: '#contact' },
+      { name: 'Unix Timestamp Guide', href: '/unix-timestamp-converter#guide' },
+      { name: 'Epoch Time Explained', href: '/epoch-converter#guide' },
+      { name: 'Programming Examples', href: '/timestamp-converter#examples' },
+      { name: 'Best Practices', href: '/online-timestamp-converter#practices' },
     ]
   };
 
@@ -82,19 +84,39 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Product Links */}
+          {/* Converter Tools Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
+            <h4 className="text-white font-semibold mb-4">转换工具</h4>
             <ul className="space-y-3">
               {links.product.map((link) => (
                 <li key={link.name}>
-                  <motion.a
-                    whileHover={{ x: 5 }}
-                    href={link.href}
-                    className="text-blue-200 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {link.name}
-                  </motion.a>
+                  <Link href={link.href}>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      className="text-blue-200 hover:text-white transition-colors duration-200 text-sm cursor-pointer"
+                    >
+                      {link.name}
+                    </motion.div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Feature Tools */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">功能特性</h4>
+            <ul className="space-y-3">
+              {links.tools.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href}>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      className="text-blue-200 hover:text-white transition-colors duration-200 text-sm cursor-pointer"
+                    >
+                      {link.name}
+                    </motion.div>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -102,35 +124,18 @@ export function Footer() {
 
           {/* Resources Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4">学习资源</h4>
             <ul className="space-y-3">
               {links.resources.map((link) => (
                 <li key={link.name}>
-                  <motion.a
-                    whileHover={{ x: 5 }}
-                    href={link.href}
-                    className="text-blue-200 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {link.name}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
-              {links.company.map((link) => (
-                <li key={link.name}>
-                  <motion.a
-                    whileHover={{ x: 5 }}
-                    href={link.href}
-                    className="text-blue-200 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {link.name}
-                  </motion.a>
+                  <Link href={link.href}>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      className="text-blue-200 hover:text-white transition-colors duration-200 text-sm cursor-pointer"
+                    >
+                      {link.name}
+                    </motion.div>
+                  </Link>
                 </li>
               ))}
             </ul>

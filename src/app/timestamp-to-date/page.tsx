@@ -10,12 +10,20 @@ import { BatchConverter } from '@/components/BatchConverter';
 import { ConversionHistory } from '@/components/ConversionHistory';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';
+import { RelatedLinks, generateRelatedLinksSchema } from '@/components/RelatedLinks';
 
 export default function TimestampToDatePage() {
   const { isDarkMode } = useAppStore();
   const [mounted, setMounted] = useState(false);
   const [conversionMode, setConversionMode] = useState('single');
   const [outputFormat, setOutputFormat] = useState('iso');
+  const pathname = '/timestamp-to-date';
+  
+  // 生成面包屑和相关链接的结构化数据
+  const breadcrumbItems = generateBreadcrumb(pathname);
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const relatedLinksSchema = generateRelatedLinksSchema(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -26,46 +34,26 @@ export default function TimestampToDatePage() {
   }
 
   // Timestamp to Date specific FAQ
-  const timestampToDateFAQ = [
+  const timestamptodateFAQ = [
     {
-      question: "如何将时间戳转换为日期？",
-      answer: "将时间戳转换为日期非常简单：1）确定时间戳的单位（秒或毫秒）；2）输入时间戳数值；3）选择目标时区；4）选择输出格式；5）点击转换获得结果。我们支持多种输出格式和全球时区。"
+      question: "How to convert timestamp to date?",
+      answer: "Simply enter your timestamp in the input field, select your desired timezone, choose the output format, and click convert. The result will show the human-readable date instantly."
     },
     {
-      question: "时间戳转日期支持哪些格式？",
-      answer: "支持多种输出格式：ISO 8601标准格式、本地化日期格式、自定义格式、UTC格式、相对时间格式。可以选择包含或不包含时间部分，以及不同的日期分隔符。"
+      question: "What date formats are available?",
+      answer: "Multiple formats including ISO 8601, RFC 3339, US format (MM/DD/YYYY), European format (DD/MM/YYYY), and custom formats. You can also specify time formats with or without seconds."
     },
     {
-      question: "如何处理不同精度的时间戳？",
-      answer: "我们自动检测时间戳精度：10位数字为秒级时间戳；13位数字为毫秒级；16位为微秒级。系统会自动应用正确的转换算法，确保结果准确性。"
+      question: "How to handle different timezones?",
+      answer: "Select your target timezone from the dropdown menu. The converter automatically adjusts for daylight saving time and provides accurate local time conversions."
     },
     {
-      question: "时间戳转日期如何处理时区？",
-      answer: "时间戳本身是UTC时间，转换时可以选择任意目标时区。系统自动处理夏令时调整，确保本地时间的准确性。支持全球500+时区和历史时区数据。"
+      question: "Can I convert multiple timestamps at once?",
+      answer: "Yes, use our batch conversion feature. Paste multiple timestamps (one per line) and get all conversions at once. Results can be exported in various formats."
     },
     {
-      question: "批量时间戳转换如何操作？",
-      answer: "批量转换支持：1）粘贴多个时间戳（换行分隔）；2）上传CSV文件；3）选择统一的输出格式和时区；4）一键转换所有数据；5）导出结果为CSV、JSON或Excel格式。"
-    },
-    {
-      question: "转换结果的准确性如何？",
-      answer: "我们保证转换准确性：使用IEEE 754双精度浮点运算；参考IANA时区数据库；处理闰年和闰秒；验证输入范围；提供毫秒级精度。所有计算本地执行，保证一致性。"
-    },
-    {
-      question: "支持哪些特殊的时间戳格式？",
-      answer: "支持多种特殊格式：负数时间戳（1970年前）；浮点时间戳；十六进制时间戳；科学记数法；不同进制的时间戳。系统会自动识别并正确处理。"
-    },
-    {
-      question: "如何验证转换结果是否正确？",
-      answer: "提供多种验证方式：显示转换前后的对比；提供反向转换验证；显示相对时间描述；支持多种格式同时显示；提供转换历史记录供核对。"
-    },
-    {
-      question: "转换历史记录如何管理？",
-      answer: "转换历史功能：自动保存最近100次转换；支持搜索和过滤；可以重新应用历史转换；支持导出历史记录；本地存储保护隐私。"
-    },
-    {
-      question: "移动设备上的使用体验如何？",
-      answer: "完全适配移动设备：响应式设计；触摸优化；离线功能；快速输入；手势支持。在手机上可以方便地进行时间戳转换，功能完整不打折扣。"
+      question: "What about millisecond timestamps?",
+      answer: "Both second-precision (10 digits) and millisecond-precision (13 digits) timestamps are supported. The converter automatically detects the format and converts accordingly."
     }
   ];
 
@@ -82,7 +70,19 @@ export default function TimestampToDatePage() {
       <div className="min-h-screen bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 dark:from-orange-900 dark:via-red-900 dark:to-pink-900">
         <Header />
         
+        {/* SEO结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([breadcrumbSchema, relatedLinksSchema])
+          }}
+        />
+        
         <main className="max-w-7xl mx-auto px-4 pb-12" data-page="timestamp-to-date">
+          {/* 面包屑导航 */}
+          <div className="pt-6 pb-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -474,7 +474,7 @@ export default function TimestampToDatePage() {
             
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
-                {timestampToDateFAQ.map((faq, index) => (
+                {timestamptodateFAQ.map((faq, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -503,6 +503,9 @@ export default function TimestampToDatePage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* 相关工具推荐 */}
+          <RelatedLinks currentPage={pathname} className="mb-16" />
         </main>
 
         <Footer />

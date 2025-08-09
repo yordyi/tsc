@@ -10,11 +10,19 @@ import { BatchConverter } from '@/components/BatchConverter';
 import { CodeExamples } from '@/components/CodeExamples';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';
+import { RelatedLinks, generateRelatedLinksSchema } from '@/components/RelatedLinks';
 
 export default function OnlineTimestampConverterPage() {
   const { isDarkMode } = useAppStore();
   const [mounted, setMounted] = useState(false);
   const [activeFeature, setActiveFeature] = useState('instant');
+  const pathname = '/online-timestamp-converter';
+  
+  // 生成面包屑和相关链接的结构化数据
+  const breadcrumbItems = generateBreadcrumb(pathname);
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const relatedLinksSchema = generateRelatedLinksSchema(pathname);
   const [onlineStats, setOnlineStats] = useState({
     usersOnline: 1247,
     conversionsToday: 48392,
@@ -42,46 +50,26 @@ export default function OnlineTimestampConverterPage() {
   }
 
   // Online tool specific FAQ
-  const onlineToolFAQ = [
+  const onlinetimestampconverterFAQ = [
     {
-      question: "为什么选择在线时间戳转换器？",
-      answer: "在线时间戳转换器提供即时访问、无需安装、实时更新、云端同步等优势。随时随地通过浏览器访问，支持所有设备，自动保存设置和历史记录，确保最佳用户体验。"
+      question: "Why choose an online timestamp converter?",
+      answer: "Online converters offer convenience, accessibility from anywhere, no software installation, always up-to-date algorithms, and cross-platform compatibility. Perfect for quick conversions and collaborative work."
     },
     {
-      question: "在线工具的安全性如何保障？",
-      answer: "我们采用多层安全保护：HTTPS加密传输；本地计算保护隐私；不存储用户数据；定期安全审计；符合国际隐私标准。您的数据完全安全，不会被第三方访问。"
+      question: "Is it safe to use online timestamp converters?",
+      answer: "Our converter runs entirely in your browser - no data is sent to servers. All conversions are performed locally, ensuring complete privacy and security of your timestamp data."
     },
     {
-      question: "离线模式下能否正常使用？",
-      answer: "支持PWA技术，首次访问后可离线使用。核心转换功能无需网络连接，本地缓存确保快速响应。网络恢复后自动同步数据和更新功能。"
+      question: "What makes this online converter different?",
+      answer: "Features include: millisecond precision, batch processing, timezone support, code examples, offline functionality, mobile optimization, and completely free usage without registration."
     },
     {
-      question: "多设备间如何同步数据？",
-      answer: "通过浏览器本地存储自动同步设置和历史记录。支持导出/导入配置文件，实现跨设备数据迁移。云端备份功能（可选）确保数据永不丢失。"
+      question: "Can I use this converter offline?",
+      answer: "Yes! Once loaded, our converter works offline. It's built as a Progressive Web App (PWA) that you can install on your device for offline access."
     },
     {
-      question: "在线工具的性能如何？",
-      answer: "采用先进的Web技术优化性能：CDN加速全球访问；本地缓存减少加载时间；延迟加载节省带宽；Service Worker提升响应速度。平均加载时间小于1秒。"
-    },
-    {
-      question: "支持哪些浏览器和设备？",
-      answer: "兼容所有现代浏览器：Chrome、Firefox、Safari、Edge等。完美支持手机、平板、桌面设备。响应式设计适配各种屏幕尺寸，触摸和键盘操作都很流畅。"
-    },
-    {
-      question: "在线工具有使用限制吗？",
-      answer: "完全免费无限制使用！无需注册、无转换次数限制、无时间限制、无广告干扰。所有功能永久免费，包括批量转换和高级特性。"
-    },
-    {
-      question: "如何获得技术支持？",
-      answer: "提供多种支持渠道：在线帮助文档；常见问题解答；用户反馈系统；社区论坛交流。技术团队及时回应用户问题，持续改进工具功能。"
-    },
-    {
-      question: "工具会定期更新吗？",
-      answer: "定期发布功能更新和性能优化：新增转换格式；改进用户界面；修复问题和漏洞；增强安全性。用户无需手动更新，自动获得最新版本。"
-    },
-    {
-      question: "可以分享给其他人使用吗？",
-      answer: "完全开放分享！提供直链分享、社交媒体分享、二维码分享等方式。可以嵌入网站、保存为书签、推荐给团队。帮助更多人高效完成时间戳转换任务。"
+      question: "What browsers are supported?",
+      answer: "All modern browsers are supported: Chrome, Firefox, Safari, Edge, Opera, and their mobile versions. The converter is optimized for performance across all platforms."
     }
   ];
 
@@ -121,7 +109,19 @@ export default function OnlineTimestampConverterPage() {
       <div className="min-h-screen bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-600 dark:from-cyan-900 dark:via-blue-900 dark:to-indigo-900">
         <Header />
         
+        {/* SEO结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([breadcrumbSchema, relatedLinksSchema])
+          }}
+        />
+        
         <main className="max-w-7xl mx-auto px-4 pb-12" data-page="online-timestamp-converter">
+          {/* 面包屑导航 */}
+          <div className="pt-6 pb-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -529,7 +529,7 @@ export default function OnlineTimestampConverterPage() {
             
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
-                {onlineToolFAQ.map((faq, index) => (
+                {onlinetimestampconverterFAQ.map((faq, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -558,6 +558,9 @@ export default function OnlineTimestampConverterPage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* 相关工具推荐 */}
+          <RelatedLinks currentPage={pathname} className="mb-16" />
         </main>
 
         <Footer />

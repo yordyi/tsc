@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#3b82f6"/>
+  <rect x="64" y="192" width="384" height="128" rx="16" fill="#ffffff" stroke="#1e40af" stroke-width="8"/>
+  <text x="256" y="280" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="56" font-weight="bold">1735689600</text>
+  <circle cx="384" cy="224" r="32" fill="#10b981"/>
+  <path d="M372 224L380 232L396 216" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="380" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="24" font-weight="600">TIMESTAMP CONVERTER</text>
+  <rect x="128" y="400" width="64" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="208" y="400" width="96" height="12" rx="6" fill="#cbd5e1"/>
+  <rect x="320" y="400" width="64" height="12" rx="6" fill="#e2e8f0"/>
+</svg>

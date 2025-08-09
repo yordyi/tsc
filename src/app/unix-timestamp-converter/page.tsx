@@ -10,11 +10,19 @@ import { BatchConverter } from '@/components/BatchConverter';
 import { CodeExamples } from '@/components/CodeExamples';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';
+import { RelatedLinks, generateRelatedLinksSchema } from '@/components/RelatedLinks';
 
 export default function UnixTimestampConverterPage() {
   const { isDarkMode } = useAppStore();
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState('converter');
+  const pathname = '/unix-timestamp-converter';
+  
+  // 生成面包屑和相关链接的结构化数据
+  const breadcrumbItems = generateBreadcrumb(pathname);
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const relatedLinksSchema = generateRelatedLinksSchema(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -25,46 +33,46 @@ export default function UnixTimestampConverterPage() {
   }
 
   // Unix-specific FAQ data
-  const unixFAQ = [
+  const unixtimestampconverterFAQ = [
     {
-      question: "什么是Unix时间戳？",
-      answer: "Unix时间戳（Unix timestamp）是从1970年1月1日00:00:00 UTC开始到指定时间的总秒数。这是POSIX时间的标准表示方法，广泛用于计算机系统和编程中表示时间。"
+      question: "What is a Unix timestamp?",
+      answer: "A Unix timestamp is the number of seconds since January 1, 1970, 00:00:00 UTC. This is the standard POSIX time representation, widely used in computer systems and programming to represent time."
     },
     {
-      question: "为什么Unix时间戳从1970年开始？",
-      answer: "1970年1月1日被称为\"Unix纪元\"（Unix Epoch），这个日期被选择是因为它接近Unix操作系统开发的时间，且足够接近计算机时代的开始，便于计算和存储。"
+      question: "Why does Unix timestamp start from 1970?",
+      answer: "January 1, 1970, is called the 'Unix Epoch.' This date was chosen because it was close to the development time of Unix operating system and near the beginning of the computer era, making it convenient for calculations and storage."
     },
     {
-      question: "Unix时间戳的优势是什么？",
-      answer: "Unix时间戳的主要优势包括：1）跨平台兼容性强；2）存储效率高（只需一个整数）；3）计算简单；4）不受时区影响；5）易于比较和排序；6）广泛的系统支持。"
+      question: "What are the advantages of Unix timestamps?",
+      answer: "Main advantages include: 1) Strong cross-platform compatibility; 2) High storage efficiency (only one integer needed); 3) Simple calculations; 4) Timezone-independent; 5) Easy to compare and sort; 6) Widespread system support."
     },
     {
-      question: "Unix时间戳支持哪些精度？",
-      answer: "我们的转换器支持多种精度：秒级（10位数字）、毫秒级（13位数字）、微秒级（16位数字）。不同系统和编程语言可能使用不同的精度。"
+      question: "What precisions does Unix timestamp support?",
+      answer: "Our converter supports multiple precisions: seconds (10 digits), milliseconds (13 digits), microseconds (16 digits). Different systems and programming languages may use different precisions."
     },
     {
-      question: "2038年问题是什么？",
-      answer: "2038年问题是指32位系统无法表示2038年1月19日03:14:07之后的时间。现代64位系统已经解决了这个问题，可以表示数十亿年的时间范围。"
+      question: "What is the Year 2038 problem?",
+      answer: "The Year 2038 problem refers to 32-bit systems being unable to represent times after January 19, 2038, 03:14:07. Modern 64-bit systems have solved this problem and can represent time ranges of billions of years."
     },
     {
-      question: "Unix时间戳如何处理闰秒？",
-      answer: "Unix时间戳不包含闰秒，它假设每天都是86400秒。当发生闰秒时，Unix时间会\"重复\"一秒或\"跳过\"一秒来保持与UTC的同步。"
+      question: "How do Unix timestamps handle leap seconds?",
+      answer: "Unix timestamps do not include leap seconds; they assume every day has 86,400 seconds. When leap seconds occur, Unix time 'repeats' or 'skips' a second to maintain synchronization with UTC."
     },
     {
-      question: "负数Unix时间戳代表什么？",
-      answer: "负数Unix时间戳表示1970年1月1日之前的时间。例如，-86400表示1969年12月31日00:00:00 UTC。我们的转换器完全支持负数时间戳。"
+      question: "What do negative Unix timestamps represent?",
+      answer: "Negative Unix timestamps represent times before January 1, 1970. For example, -86400 represents December 31, 1969, 00:00:00 UTC. Our converter fully supports negative timestamps."
     },
     {
-      question: "Unix时间戳在数据库中如何存储？",
-      answer: "在数据库中，Unix时间戳通常存储为INTEGER或BIGINT类型。这比DATETIME类型更节省空间，且在跨时区查询时更高效。"
+      question: "How are Unix timestamps stored in databases?",
+      answer: "In databases, Unix timestamps are usually stored as INTEGER or BIGINT types. This saves more space than DATETIME types and is more efficient for cross-timezone queries."
     },
     {
-      question: "如何在编程中处理Unix时间戳？",
-      answer: "大多数编程语言都有内置的时间戳处理函数。JavaScript使用Date对象，Python使用datetime模块，Java使用Instant类。我们提供了多种语言的代码示例。"
+      question: "How to handle Unix timestamps in programming?",
+      answer: "Most programming languages have built-in timestamp handling functions. JavaScript uses Date objects, Python uses datetime modules, Java uses Instant classes. We provide code examples for multiple languages."
     },
     {
-      question: "Unix时间戳的最大值是多少？",
-      answer: "32位系统的最大值是2147483647（2038年）。64位系统理论上可以表示到292,277,026,596年。我们的转换器支持完整的64位范围。"
+      question: "What is the maximum value of Unix timestamp?",
+      answer: "The maximum value for 32-bit systems is 2147483647 (year 2038). 64-bit systems can theoretically represent up to year 292,277,026,596. Our converter supports the full 64-bit range."
     }
   ];
 
@@ -73,7 +81,19 @@ export default function UnixTimestampConverterPage() {
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 dark:from-gray-900 dark:via-gray-800 dark:to-black">
         <Header />
         
+        {/* SEO结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([breadcrumbSchema, relatedLinksSchema])
+          }}
+        />
+        
         <main className="max-w-7xl mx-auto px-4 pb-12" data-page="unix-timestamp-converter">
+          {/* 面包屑导航 */}
+          <div className="pt-6 pb-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -452,7 +472,7 @@ export default function UnixTimestampConverterPage() {
             
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
-                {unixFAQ.map((faq, index) => (
+                {unixtimestampconverterFAQ.map((faq, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -481,6 +501,9 @@ export default function UnixTimestampConverterPage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* 相关工具推荐 */}
+          <RelatedLinks currentPage={pathname} className="mb-16" />
         </main>
 
         <Footer />

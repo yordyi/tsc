@@ -1,0 +1,56 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Main Title -->
+  <text x="600" y="200" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="64" font-weight="bold">
+    TimestampConverter
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="260" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="32">
+    Professional Unix Time Converter for Developers
+  </text>
+  
+  <!-- Feature highlights -->
+  <text x="600" y="320" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="600">
+    ⚡ Instant Conversion • 🌍 Multiple Timezones • 💻 Developer Tools
+  </text>
+  
+  <!-- Timestamp examples -->
+  <g transform="translate(200, 400)">
+    <!-- Unix timestamp box -->
+    <rect x="0" y="0" width="250" height="120" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="30" text-anchor="middle" fill="#3b82f6" font-family="monospace" font-size="14" font-weight="600">Unix Timestamp</text>
+    <text x="125" y="60" text-anchor="middle" fill="#1e293b" font-family="monospace" font-size="24" font-weight="bold">1735689600</text>
+    <text x="125" y="85" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Current Time</text>
+  </g>
+  
+  <!-- Arrow -->
+  <g transform="translate(500, 450)">
+    <path d="M0 10 L30 10" stroke="#10b981" stroke-width="4" marker-end="url(#arrowhead)"/>
+    <path d="M15 5 L30 10 L15 15" stroke="#10b981" stroke-width="4" fill="none"/>
+  </g>
+  
+  <!-- Human readable date box -->
+  <g transform="translate(600, 400)">
+    <rect x="0" y="0" width="300" height="120" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+    <text x="150" y="30" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="14" font-weight="600">Human Readable</text>
+    <text x="150" y="60" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Jan 1, 2025 12:00:00</text>
+    <text x="150" y="85" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="12">UTC Timezone</text>
+  </g>
+  
+  <!-- Brand/URL -->
+  <text x="600" y="580" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">
+    timestampconverter.dev
+  </text>
+</svg>

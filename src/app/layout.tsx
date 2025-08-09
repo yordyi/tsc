@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import './globals.css';
 
 const inter = Inter({ 
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'your-google-verification-code-here',
   },
   other: {
     'apple-mobile-web-app-capable': 'yes',
@@ -154,15 +155,8 @@ export default function RootLayout({
       >
         {children}
         
-        {/* Analytics - Replace with your analytics code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Google Analytics 4 or your preferred analytics
-              // gtag('config', 'GA_TRACKING_ID');
-            `
-          }}
-        />
+        {/* Google Analytics 4 */}
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID} />
       </body>
     </html>
   );

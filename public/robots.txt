@@ -1,0 +1,60 @@
+# Robots.txt for TimestampConverter.dev
+# Professional Unix timestamp converter and epoch time conversion tool
+
+User-agent: *
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Block AI training crawlers (optional - remove if you want AI training)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Disallow admin and private areas (if any)
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /.env
+Disallow: /.git/
+
+# Sitemap location
+Sitemap: https://timestampconverter.dev/sitemap.xml
+
+# Crawl delay for courtesy (1 second)
+Crawl-delay: 1
+
+# Cache directive for better SEO
+# Allow caching of timestamp conversion results
+Allow: /timestamp-converter
+Allow: /epoch-converter
+Allow: /unix-timestamp-converter
+Allow: /timestamp-to-date
+Allow: /online-timestamp-converter

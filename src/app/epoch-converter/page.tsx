@@ -10,10 +10,19 @@ import { BatchConverter } from '@/components/BatchConverter';
 import { CodeExamples } from '@/components/CodeExamples';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';
+import { RelatedLinks, generateRelatedLinksSchema } from '@/components/RelatedLinks';
 
 export default function EpochConverterPage() {
   const { isDarkMode } = useAppStore();
   const [mounted, setMounted] = useState(false);
+  const pathname = '/epoch-converter';
+  
+  // 生成面包屑和相关链接的结构化数据
+  const breadcrumbItems = generateBreadcrumb(pathname);
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const relatedLinksSchema = generateRelatedLinksSchema(pathname);
+  
   const [epochStats, setEpochStats] = useState({
     currentEpoch: 0,
     daysSinceEpoch: 0,
@@ -51,46 +60,26 @@ export default function EpochConverterPage() {
   }
 
   // Epoch-specific FAQ data
-  const epochFAQ = [
+  const epochconverterFAQ = [
     {
-      question: "什么是Epoch时间？",
-      answer: "Epoch时间是指从特定起始点（通常是1970年1月1日00:00:00 UTC）开始计算的时间表示方法。Unix Epoch是最常见的epoch，但不同系统可能使用不同的epoch起始点。"
+      question: "What is an epoch converter?",
+      answer: "An epoch converter transforms Unix epoch time (seconds since January 1, 1970) into human-readable dates and vice versa. Essential for developers working with time-based data."
     },
     {
-      question: "Unix Epoch为什么选择1970年1月1日？",
-      answer: "1970年1月1日被选为Unix Epoch是因为：1）接近Unix系统开发时间；2）是一个整数年份；3）避免了历史上的复杂日历调整；4）为负数时间戳提供了合理的历史范围；5）计算简单且易于实现。"
+      question: "Why is it called 'epoch' time?",
+      answer: "The term 'epoch' refers to a reference point in time. The Unix epoch starts at January 1, 1970, 00:00:00 UTC, serving as the zero point for Unix time calculations."
     },
     {
-      question: "除了Unix Epoch还有其他Epoch吗？",
-      answer: "是的，存在多种Epoch：Windows文件时间使用1601年1月1日；.NET DateTime使用0001年1月1日；Java使用1970年1月1日但以毫秒为单位；GPS时间使用1980年1月6日。我们的转换器支持多种Epoch格式。"
+      question: "What are common epoch time use cases?",
+      answer: "Used in log files, database timestamps, API responses, cache expiration, session management, event tracking, and any system requiring precise time measurements."
     },
     {
-      question: "Epoch时间的精度有哪些？",
-      answer: "Epoch时间支持多种精度：秒级（最常见）、毫秒级（JavaScript、Java）、微秒级（高精度应用）、纳秒级（科学计算）、100纳秒级（Windows FILETIME）。不同精度适用于不同的应用场景。"
+      question: "How accurate is epoch conversion?",
+      answer: "Our converter provides millisecond accuracy using IEEE 754 double-precision arithmetic. All conversions are mathematically precise and handle edge cases properly."
     },
     {
-      question: "Epoch转换如何处理时区？",
-      answer: "Epoch时间本身是UTC时间，不包含时区信息。这是它的优势之一——全球统一。当需要显示本地时间时，需要在Epoch时间基础上应用时区偏移。我们的转换器自动处理时区转换。"
-    },
-    {
-      question: "负数Epoch时间如何理解？",
-      answer: "负数Epoch时间表示epoch起始点之前的时间。例如，Unix时间戳-86400表示1969年12月31日00:00:00 UTC。这对于处理历史数据和向后兼容性很重要。"
-    },
-    {
-      question: "Epoch时间在编程中的最佳实践？",
-      answer: "最佳实践包括：1）始终使用UTC进行存储和计算；2）仅在显示时转换为本地时区；3）选择合适的精度避免溢出；4）处理边界情况和异常值；5）使用标准库而非手动计算；6）考虑闰秒的影响。"
-    },
-    {
-      question: "如何选择合适的Epoch精度？",
-      answer: "选择原则：日志记录通常用秒级；用户界面用毫秒级；金融交易用微秒或纳秒级；科学计算根据需求选择最高精度；数据库存储考虑空间和性能平衡；API设计考虑兼容性。"
-    },
-    {
-      question: "Epoch时间转换的常见错误？",
-      answer: "常见错误：1）秒和毫秒单位混淆；2）忽略时区处理；3）32位系统溢出问题；4）闰秒处理不当；5）日期边界计算错误；6）浮点精度丢失；7）历史日期处理错误。我们的转换器避免了这些问题。"
-    },
-    {
-      question: "Epoch转换器的准确性如何保证？",
-      answer: "我们通过以下方式保证准确性：1）使用IEEE 754标准的双精度计算；2）参考权威时间标准；3）处理所有边界情况；4）支持完整的64位范围；5）严格测试各种输入；6）实时验证算法正确性。"
+      question: "Does epoch time account for leap years?",
+      answer: "Yes, epoch time calculations automatically account for leap years, leap days, and calendar variations. Our converter handles all calendar complexities accurately."
     }
   ];
 
@@ -99,7 +88,19 @@ export default function EpochConverterPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 dark:from-black dark:via-purple-950 dark:to-indigo-950">
         <Header />
         
+        {/* SEO结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([breadcrumbSchema, relatedLinksSchema])
+          }}
+        />
+        
         <main className="max-w-7xl mx-auto px-4 pb-12" data-page="epoch-converter">
+          {/* 面包屑导航 */}
+          <div className="pt-6 pb-4">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -522,7 +523,7 @@ export default function EpochConverterPage() {
             
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
-                {epochFAQ.map((faq, index) => (
+                {epochconverterFAQ.map((faq, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -551,6 +552,9 @@ export default function EpochConverterPage() {
               </div>
             </div>
           </motion.div>
+          
+          {/* 相关工具推荐 */}
+          <RelatedLinks currentPage={pathname} className="mb-16" />
         </main>
 
         <Footer />

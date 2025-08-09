@@ -114,23 +114,23 @@ export default function HomePage() {
           >
             <div className="text-center">
               <h2 className="text-3xl font-bold text-white mb-4">
-                闪电般快速的转换体验
+                Lightning-Fast Conversion Experience
               </h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                无需服务器请求，全部计算在本地完成。实时验证输入，瞬间显示结果。
+                No server requests required - all calculations performed locally. Real-time input validation with instant results.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div className="bg-white/5 rounded-xl p-4">
-                  <div className="text-2xl font-bold text-yellow-300 mb-2">小于 1ms</div>
-                  <div className="text-blue-100">单次转换时间</div>
+                  <div className="text-2xl font-bold text-yellow-300 mb-2">&lt; 1ms</div>
+                  <div className="text-blue-100">Single Conversion Time</div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4">
                   <div className="text-2xl font-bold text-yellow-300 mb-2">1000+</div>
-                  <div className="text-blue-100">批量转换支持</div>
+                  <div className="text-blue-100">Batch Processing Support</div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4">
                   <div className="text-2xl font-bold text-yellow-300 mb-2">0KB</div>
-                  <div className="text-blue-100">服务器流量消耗</div>
+                  <div className="text-blue-100">Server Traffic Usage</div>
                 </div>
               </div>
             </div>
@@ -146,10 +146,10 @@ export default function HomePage() {
           >
             <div className="text-center">
               <h2 className="text-3xl font-bold text-white mb-4">
-                全球时区支持
+                Global Timezone Support
               </h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                支持世界上所有时区的转换，自动检测夏令时调整。精确到毫秒级别。
+                Support for all world timezones with automatic daylight saving time detection. Precision down to milliseconds.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {['UTC', 'GMT+8', 'EST', 'PST', 'JST', 'CET', 'IST', 'MST'].map((tz) => (
@@ -171,10 +171,10 @@ export default function HomePage() {
           >
             <div className="text-center">
               <h2 className="text-3xl font-bold text-white mb-4">
-                多种导出选项
+                Multiple Export Options
               </h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                支持CSV、JSON、XML多种格式导出，方便数据分析和批量处理。
+                Support for CSV, JSON, XML export formats for convenient data analysis and batch processing.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 {['CSV', 'JSON', 'XML', 'Excel', 'TXT'].map((format) => (
