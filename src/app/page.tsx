@@ -1,16 +1,31 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Clock, Zap, Smartphone, Code2 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { TimestampConverter } from '@/components/TimestampConverter';
 import { CurrentTimestamp } from '@/components/CurrentTimestamp';
-import { FeatureCards } from '@/components/FeatureCards';
-import { CodeExamples } from '@/components/CodeExamples';
-import { FAQ } from '@/components/FAQ';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { AnimatedSection } from '@/components/AnimatedSection';
+
+// 动态导入非关键组件以减少初始包大小
+const FeatureCards = React.lazy(() => import('@/components/FeatureCards').then(module => ({ default: module.FeatureCards })));
+const CodeExamples = React.lazy(() => import('@/components/CodeExamples').then(module => ({ default: module.CodeExamples })));
+const FAQ = React.lazy(() => import('@/components/FAQ').then(module => ({ default: module.FAQ })));
+
+// Loading组件 - 预定义高度防止CLS
+const ComponentLoading = () => (
+  <div className="animate-pulse bg-white/5 rounded-3xl p-8 border border-white/20 min-h-[300px] flex flex-col justify-center">
+    <div className="h-4 bg-white/10 rounded w-3/4 mx-auto mb-4"></div>
+    <div className="h-4 bg-white/10 rounded w-1/2 mx-auto mb-8"></div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="h-20 bg-white/5 rounded-lg"></div>
+      ))}
+    </div>
+  </div>
+);
 
 export default function HomePage() {
   const { isDarkMode } = useAppStore();
@@ -31,12 +46,7 @@ export default function HomePage() {
         
         <main className="max-w-6xl mx-auto px-4 pb-12">
           {/* Hero Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
+          <AnimatedSection className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Modern{' '}
               <span className="text-yellow-300">Timestamp</span>{' '}
@@ -62,54 +72,36 @@ export default function HomePage() {
                 <span>Developer Friendly</span>
               </div>
             </div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Current Timestamp Display */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-12"
-          >
+          <AnimatedSection delay={200} className="mb-12">
             <CurrentTimestamp />
-          </motion.div>
+          </AnimatedSection>
 
           {/* Main Converter Tool */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-12"
-          >
+          <AnimatedSection delay={400} className="mb-12">
             <TimestampConverter />
-          </motion.div>
+          </AnimatedSection>
 
-          {/* Feature Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mb-12"
-          >
-            <FeatureCards />
-          </motion.div>
+          {/* Feature Cards - 懒加载 */}
+          <AnimatedSection delay={600} className="mb-12">
+            <Suspense fallback={<ComponentLoading />}>
+              <FeatureCards />
+            </Suspense>
+          </AnimatedSection>
 
-          {/* Code Examples */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mb-12"
-          >
-            <CodeExamples />
-          </motion.div>
+          {/* Code Examples - 懒加载 */}
+          <AnimatedSection delay={800} className="mb-12">
+            <Suspense fallback={<ComponentLoading />}>
+              <CodeExamples />
+            </Suspense>
+          </AnimatedSection>
 
           {/* Performance Section - Lightning Fast */}
-          <motion.div
+          <AnimatedSection
             id="performance"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+            delay={900}
             className="mb-12 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20"
           >
             <div className="text-center">
@@ -134,14 +126,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Timezone Support Section */}
-          <motion.div
+          <AnimatedSection
             id="timezones"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
+            delay={1000}
             className="mb-12 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20"
           >
             <div className="text-center">
@@ -159,14 +149,12 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Export Options Section */}
-          <motion.div
+          <AnimatedSection
             id="export"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
+            delay={1100}
             className="mb-12 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20"
           >
             <div className="text-center">
@@ -184,17 +172,14 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </AnimatedSection>
 
-          {/* FAQ Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="mb-12"
-          >
-            <FAQ />
-          </motion.div>
+          {/* FAQ Section - 懒加载 */}
+          <AnimatedSection delay={1200} className="mb-12">
+            <Suspense fallback={<ComponentLoading />}>
+              <FAQ />
+            </Suspense>
+          </AnimatedSection>
         </main>
 
         <Footer />

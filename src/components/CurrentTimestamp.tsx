@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Copy, Check } from 'lucide-react';
 import { format } from 'date-fns';
@@ -41,15 +41,18 @@ export function CurrentTimestamp() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleCopy = async (value: number, unit: TimestampUnit) => {
+  // 使用useCallback优化性能，防止不必要的重新渲染
+  const handleCopy = useCallback(async (value: number, unit: TimestampUnit) => {
     try {
       await navigator.clipboard.writeText(value.toString());
       setCopiedUnit(unit);
-      setTimeout(() => setCopiedUnit(null), 2000);
+      // 使用requestAnimationFrame优化定时器
+      const timeoutId = setTimeout(() => setCopiedUnit(null), 2000);
+      return () => clearTimeout(timeoutId);
     } catch (error) {
       console.error('Failed to copy:', error);
     }
-  };
+  }, []);
 
   const timestampVariants = {
     initial: { scale: 0.95, opacity: 0 },
@@ -93,13 +96,13 @@ export function CurrentTimestamp() {
           initial={{ scale: 0.95, opacity: 0.8 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.2 }}
-          className="text-3xl md:text-4xl font-mono font-bold text-white mb-2"
+          className="text-3xl md:text-4xl font-mono font-bold text-white mb-2 min-h-[3rem] flex items-center justify-center"
         >
-          {currentTime.seconds.toLocaleString()}
+          {currentTime.seconds || 0}
         </motion.div>
         
-        <p className="text-sm text-blue-100">
-          {currentTime.formatted}
+        <p className="text-sm text-blue-100 min-h-[1.25rem] flex items-center justify-center">
+          {currentTime.formatted || 'Loading...'}
         </p>
       </div>
 

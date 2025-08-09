@@ -1,0 +1,189 @@
+/* Critical CSS - Above the fold styles */
+
+/* CSS变量和基础样式 */
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --backdrop-blur: blur(10px);
+}
+
+/* 基础重置和字体 */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-inter);
+  background: #ffffff;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.dark body {
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* 关键布局样式 */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #2563eb, #7c3aed, #6b21a8);
+}
+
+.dark .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #111827, #6b21a8, #111827);
+}
+
+/* 容器和网格 */
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+/* 文字样式 */
+.text-center {
+  text-align: center;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-yellow-300 {
+  color: #fde047;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+  
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 基础组件样式 */
+.bg-white\/10 {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
+}
+
+/* 过渡动画 */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-600 {
+  transition-duration: 600ms;
+}
+
+/* 透明度和变换 */
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.translate-y-0 {
+  transform: translateY(0px);
+}
+
+.translate-y-5 {
+  transform: translateY(1.25rem);
+}
+
+/* 加载状态 */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 焦点样式 */
+*:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: #1e3a8a;
+}

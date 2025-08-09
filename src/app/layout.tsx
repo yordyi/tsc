@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import './globals.css';
 
 const inter = Inter({ 
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     description: 'Convert Unix timestamps to human-readable dates instantly. The fastest, most accurate timestamp converter built for developers.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'TimestampConverter - Modern Timestamp Conversion Tool',
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     creator: '@timestampconverter',
     title: 'Timestamp Converter - Free Unix Time & Epoch Converter',
     description: 'Convert Unix timestamps instantly. Fast, accurate, developer-friendly.',
-    images: ['/twitter-image.png'],
+    images: ['/og-image.svg'],
   },
   robots: {
     index: true,
@@ -93,23 +94,75 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Google Fonts */}
+        {/* Critical Performance Optimizations */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        
+        {/* Optimized font loading with display=swap - preload for performance */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          as="style"
+        />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         />
         
-        {/* Favicon */}
+        {/* Favicon with optimized loading */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         
         {/* Manifest for PWA */}
         <link rel="manifest" href="/manifest.json" />
         
-        {/* Performance hints */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* DNS prefetch and resource hints for performance */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        
+        {/* Preload critical resources for LCP improvement */}
+        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
+        <link rel="preload" href="/_next/static/chunks/framework.js" as="script" />
+        <link rel="preload" href="/_next/static/chunks/main.js" as="script" />
+        
+        {/* Critical CSS inlined for performance */}
+        <style>{`
+          :root {
+            --font-inter: 'Inter', system-ui, sans-serif;
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --backdrop-blur: blur(10px);
+          }
+          html { scroll-behavior: smooth; }
+          body { margin: 0; padding: 0; font-family: var(--font-inter); background: #ffffff; color: #111827; line-height: 1.6; }
+          .dark body { background: #111827; color: #f9fafb; }
+          .min-h-screen { min-height: 100vh; }
+          .bg-gradient-to-br { background: linear-gradient(to bottom right, #2563eb, #7c3aed, #6b21a8); }
+          .dark .bg-gradient-to-br { background: linear-gradient(to bottom right, #111827, #6b21a8, #111827); }
+          .max-w-6xl { max-width: 72rem; }
+          .mx-auto { margin-left: auto; margin-right: auto; }
+          .px-4 { padding-left: 1rem; padding-right: 1rem; }
+          .pb-12 { padding-bottom: 3rem; }
+          .text-center { text-align: center; }
+          .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+          .font-bold { font-weight: 700; }
+          .text-white { color: #ffffff; }
+          .text-yellow-300 { color: #fde047; }
+          .mb-6 { margin-bottom: 1.5rem; }
+          .mb-8 { margin-bottom: 2rem; }
+          .mb-12 { margin-bottom: 3rem; }
+          @media (min-width: 768px) {
+            .md\\:text-6xl { font-size: 3.75rem; line-height: 1; }
+          }
+          .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+          .duration-600 { transition-duration: 600ms; }
+          .opacity-0 { opacity: 0; }
+          .opacity-100 { opacity: 1; }
+          .translate-y-0 { transform: translateY(0px); }
+          .translate-y-5 { transform: translateY(1.25rem); }
+          *:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+        `}</style>
         
         {/* Structured data */}
         <script
@@ -137,7 +190,7 @@ export default function RootLayout({
                 'Offline functionality',
                 'Privacy-focused (no data sent to server)'
               ],
-              screenshot: 'https://timestampconverter.dev/screenshot.png',
+              screenshot: 'https://timestampconverter.dev/og-image.svg',
               softwareVersion: '2.0.0',
               datePublished: '2024-01-01',
               dateModified: new Date().toISOString().split('T')[0],
@@ -154,6 +207,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        
+        {/* Service Worker Registration */}
+        <ServiceWorkerRegistration />
         
         {/* Google Analytics 4 */}
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID} />
