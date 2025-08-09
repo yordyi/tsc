@@ -2,8 +2,21 @@
 
 import { motion } from 'framer-motion';
 import { Layers, Globe, Code2, Zap, History, Download } from 'lucide-react';
+import { useAppStore } from '@/lib/store';
 
-const features = [
+interface Feature {
+  icon: any;
+  title: string;
+  description: string;
+  color: string;
+  bgColor: string;
+  textColor: string;
+  link: string;
+  action?: 'scroll' | 'tab';
+  tabTarget?: 'single' | 'batch' | 'code';
+}
+
+const features: Feature[] = [
   {
     icon: Layers,
     title: 'Batch Conversion',
@@ -11,7 +24,9 @@ const features = [
     color: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-100 dark:bg-blue-900/30',
     textColor: 'text-blue-600 dark:text-blue-400',
-    link: '#batch'
+    link: '#batch',
+    action: 'tab',
+    tabTarget: 'batch'
   },
   {
     icon: Globe,
@@ -20,7 +35,8 @@ const features = [
     color: 'from-green-500 to-green-600', 
     bgColor: 'bg-green-100 dark:bg-green-900/30',
     textColor: 'text-green-600 dark:text-green-400',
-    link: '#timezones'
+    link: '#timezones',
+    action: 'scroll'
   },
   {
     icon: Code2,
@@ -29,7 +45,8 @@ const features = [
     color: 'from-purple-500 to-purple-600',
     bgColor: 'bg-purple-100 dark:bg-purple-900/30', 
     textColor: 'text-purple-600 dark:text-purple-400',
-    link: '#examples'
+    link: '#examples',
+    action: 'scroll'
   },
   {
     icon: Zap,
@@ -38,7 +55,8 @@ const features = [
     color: 'from-yellow-500 to-yellow-600',
     bgColor: 'bg-yellow-100 dark:bg-yellow-900/30',
     textColor: 'text-yellow-600 dark:text-yellow-400',
-    link: '#performance'
+    link: '#performance',
+    action: 'scroll'
   },
   {
     icon: History,
@@ -47,7 +65,9 @@ const features = [
     color: 'from-indigo-500 to-indigo-600',
     bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
     textColor: 'text-indigo-600 dark:text-indigo-400',
-    link: '#history'
+    link: '#history',
+    action: 'tab',
+    tabTarget: 'code'
   },
   {
     icon: Download,
@@ -56,7 +76,8 @@ const features = [
     color: 'from-pink-500 to-pink-600',
     bgColor: 'bg-pink-100 dark:bg-pink-900/30',
     textColor: 'text-pink-600 dark:text-pink-400',
-    link: '#export'
+    link: '#export',
+    action: 'scroll'
   }
 ];
 
@@ -84,6 +105,24 @@ const cardVariants = {
 };
 
 export function FeatureCards() {
+  const { setActiveTab } = useAppStore();
+
+  const handleCardClick = (feature: Feature) => {
+    if (feature.action === 'tab' && feature.tabTarget) {
+      // 对于需要切换Tab的功能
+      setActiveTab(feature.tabTarget);
+      // 滚动到转换器区域
+      setTimeout(() => {
+        const converterElement = document.querySelector('#timestamp-converter');
+        converterElement?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (feature.action === 'scroll') {
+      // 对于需要滚动到特定区域的功能
+      const element = document.querySelector(feature.link);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-12">
       <motion.div
@@ -113,10 +152,7 @@ export function FeatureCards() {
               variants={cardVariants}
               whileHover="hover"
               className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group cursor-pointer"
-              onClick={() => {
-                const element = document.querySelector(feature.link);
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => handleCardClick(feature)}
             >
               {/* Icon */}
               <motion.div

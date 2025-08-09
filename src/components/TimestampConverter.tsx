@@ -41,7 +41,7 @@ export function TimestampConverter() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 transition-colors duration-300">
+    <div id="timestamp-converter" className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 transition-colors duration-300">
       {/* Conversion Mode Toggle */}
       <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1 mb-8">
         <motion.button

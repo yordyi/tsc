@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功能卡片导航测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .test-case {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        
+        .test-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .test-steps {
+            margin: 10px 0;
+        }
+        
+        .test-expected {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>时间戳转换器 - 功能卡片导航测试</h1>
+    
+    <p><strong>测试URL:</strong> <a href="http://localhost:3001" target="_blank">http://localhost:3001</a></p>
+    
+    <div class="test-case">
+        <div class="test-title">测试1: 批量转换导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>打开应用首页</li>
+                <li>找到"Batch Conversion"功能卡片</li>
+                <li>点击该卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该滚动到转换器区域</li>
+                <li>转换器中的Tab应该自动切换到"批量转换"</li>
+                <li>显示批量转换的界面</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-case">
+        <div class="test-title">测试2: 转换历史导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>点击"Conversion History"功能卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该滚动到转换器区域</li>
+                <li>转换器中的Tab应该自动切换到"History"</li>
+                <li>显示历史记录界面</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-case">
+        <div class="test-title">测试3: 代码示例导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>点击"Code Examples"功能卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该平滑滚动到代码示例区域</li>
+                <li>代码示例区域应该显示在视窗中</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-case">
+        <div class="test-title">测试4: 时区支持导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>点击"Timezone Support"功能卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该平滑滚动到时区支持区域</li>
+                <li>时区支持区域应该显示在视窗中</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-case">
+        <div class="test-title">测试5: 闪电快速导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>点击"Lightning Fast"功能卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该平滑滚动到性能说明区域</li>
+                <li>性能说明区域应该显示在视窗中</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-case">
+        <div class="test-title">测试6: 导出选项导航</div>
+        <div class="test-steps">
+            <strong>步骤:</strong>
+            <ol>
+                <li>点击"Export Options"功能卡片</li>
+            </ol>
+        </div>
+        <div class="test-expected">
+            <strong>期望结果:</strong>
+            <ul>
+                <li>页面应该平滑滚动到导出选项区域</li>
+                <li>导出选项区域应该显示在视窗中</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>手动测试清单</h2>
+    <ul class="checklist">
+        <li><input type="checkbox" id="test1"> <label for="test1">批量转换卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test2"> <label for="test2">转换历史卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test3"> <label for="test3">代码示例卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test4"> <label for="test4">时区支持卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test5"> <label for="test5">闪电快速卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test6"> <label for="test6">导出选项卡片导航功能正常</label></li>
+        <li><input type="checkbox" id="test7"> <label for="test7">所有卡片点击都有视觉反馈（hover效果）</label></li>
+        <li><input type="checkbox" id="test8"> <label for="test8">滚动动画平滑自然</label></li>
+        <li><input type="checkbox" id="test9"> <label for="test9">Tab切换动画正常</label></li>
+        <li><input type="checkbox" id="test10"> <label for="test10">在移动设备上导航功能正常</label></li>
+    </ul>
+
+    <h2>测试注意事项</h2>
+    <ul>
+        <li>确保浏览器控制台没有JavaScript错误</li>
+        <li>测试时注意观察页面滚动是否平滑</li>
+        <li>验证Tab切换是否立即响应</li>
+        <li>检查目标区域是否正确显示在视窗中</li>
+        <li>在不同屏幕尺寸下测试导航功能</li>
+    </ul>
+
+    <script>
+        // 简单的统计功能
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+                const total = document.querySelectorAll('.checklist input[type="checkbox"]').length;
+                const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
+                console.log(`测试进度: ${checked}/${total} (${Math.round(checked/total*100)}%)`);
+            }
+        });
+    </script>
+</body>
+</html>

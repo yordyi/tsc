@@ -82,7 +82,7 @@ export function CodeExamples() {
   };
 
   return (
-    <section className="py-12">
+    <section id="examples" className="py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
