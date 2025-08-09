@@ -49,11 +49,6 @@
     "app/api/**.ts": {
       "maxDuration": 10
     }
-  },
-  "rewrites": [
-    {
-      "source": "/sw.js",
-      "destination": "/_next/static/sw.js"
-    }
-  ]
+  }
 }
+EOF < /dev/null

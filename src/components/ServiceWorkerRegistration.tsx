@@ -4,10 +4,14 @@ import { useEffect } from 'react';
 
 export function ServiceWorkerRegistration() {
   useEffect(() => {
-    if (
-      typeof window !== 'undefined' &&
-      'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production'
+    // Temporarily disable Service Worker registration for debugging
+    console.log('[SW] Service Worker registration temporarily disabled for debugging');
+    
+    // TODO: Re-enable after verifying other fixes work
+    if (false && 
+        typeof window !== 'undefined' &&
+        'serviceWorker' in navigator &&
+        process.env.NODE_ENV === 'production'
     ) {
       const registerSW = async () => {
         try {
@@ -17,7 +21,6 @@ export function ServiceWorkerRegistration() {
 
           console.log('[SW] Registration successful:', registration);
 
-          // 监听Service Worker更新
           registration.addEventListener('updatefound', () => {
             const newWorker = registration.installing;
             if (newWorker) {
@@ -26,8 +29,7 @@ export function ServiceWorkerRegistration() {
                   newWorker.state === 'installed' &&
                   navigator.serviceWorker.controller
                 ) {
-                  // 新的Service Worker可用，提示用户刷新
-                  if (confirm('新版本可用，是否刷新页面？')) {
+                  if (confirm('New version available, refresh page?')) {
                     window.location.reload();
                   }
                 }
@@ -35,7 +37,6 @@ export function ServiceWorkerRegistration() {
             }
           });
 
-          // 监听Service Worker消息
           navigator.serviceWorker.addEventListener('message', (event) => {
             if (event.data && event.data.type === 'SW_UPDATED') {
               console.log('[SW] Service Worker updated');
@@ -53,3 +54,4 @@ export function ServiceWorkerRegistration() {
 
   return null;
 }
+
