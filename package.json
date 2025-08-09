@@ -7,7 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:seo": "jest --testPathPattern=seo-landing-pages",
+    "test:performance": "jest --testPathPattern=performance",
+    "test:functional": "jest --testPathPattern=functional",
+    "test:mobile": "jest --testPathPattern=mobile",
+    "test:report": "jest --coverage --coverageReporters=html text lcov",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse-report.html",
+    "audit:seo": "lighthouse http://localhost:3000 --only-categories=seo --output json --output-path ./reports/seo-audit.json"
   },
   "dependencies": {
     "next": "^14.0.4",
@@ -37,7 +47,15 @@
     "@types/uuid": "^9.0.7",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/user-event": "^14.5.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@types/jest": "^29.5.8",
+    "lighthouse": "^11.3.0",
+    "puppeteer": "^21.5.2"
   },
   "engines": {
     "node": ">=18.0.0"
