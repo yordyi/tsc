@@ -104,7 +104,7 @@ const cardVariants = {
   }
 };
 
-export function FeatureCards() {
+function FeatureCards() {
   const { setActiveTab } = useAppStore();
 
   const handleCardClick = (feature: Feature) => {
@@ -211,3 +211,5 @@ export function FeatureCards() {
     </section>
   );
 }
+
+export default FeatureCards;

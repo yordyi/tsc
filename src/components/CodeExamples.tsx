@@ -67,7 +67,7 @@ long unixTimestamp = now.toEpochSecond(ZoneOffset.UTC);
 System.out.println(unixTimestamp);`
 };
 
-export function CodeExamples() {
+function CodeExamples() {
   const [activeLanguage, setActiveLanguage] = useState('javascript');
   const [copied, setCopied] = useState(false);
 
@@ -156,3 +156,5 @@ export function CodeExamples() {
     </section>
   );
 }
+
+export default CodeExamples;

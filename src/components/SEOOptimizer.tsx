@@ -9,7 +9,7 @@ interface SEOOptimizerProps {
   structuredData?: object;
 }
 
-export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
+const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
   page,
   keywords,
   description,

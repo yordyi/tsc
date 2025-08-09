@@ -31,7 +31,7 @@ const faqs = [
   }
 ];
 
-export function FAQ() {
+function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -123,3 +123,5 @@ export function FAQ() {
     </section>
   );
 }
+
+export default FAQ;

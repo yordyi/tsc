@@ -11,7 +11,7 @@ interface AnimatedSectionProps {
 
 export function AnimatedSection({ children, delay = 0, className = '', id }: AnimatedSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [motion, setMotion] = useState<any>(null);
+  const [motion, setMotion] = useState<typeof import('framer-motion').motion | null>(null);
 
   useEffect(() => {
     // 动态导入 framer-motion

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { FeatureCards } from '../FeatureCards';
+import FeatureCards from '../FeatureCards';
 import { useAppStore } from '@/lib/store';
 
 // Mock useAppStore

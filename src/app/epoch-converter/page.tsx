@@ -7,7 +7,7 @@ import { useAppStore } from '@/lib/store';
 import { TimestampConverter } from '@/components/TimestampConverter';
 import { CurrentTimestamp } from '@/components/CurrentTimestamp';
 import { BatchConverter } from '@/components/BatchConverter';
-import { CodeExamples } from '@/components/CodeExamples';
+import CodeExamples from '@/components/CodeExamples';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumb, generateBreadcrumb, generateBreadcrumbSchema } from '@/components/Breadcrumb';

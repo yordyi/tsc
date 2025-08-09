@@ -10,9 +10,9 @@ import { Footer } from '@/components/Footer';
 import { AnimatedSection } from '@/components/AnimatedSection';
 
 // 动态导入非关键组件以减少初始包大小
-const FeatureCards = React.lazy(() => import('@/components/FeatureCards').then(module => ({ default: module.FeatureCards })));
-const CodeExamples = React.lazy(() => import('@/components/CodeExamples').then(module => ({ default: module.CodeExamples })));
-const FAQ = React.lazy(() => import('@/components/FAQ').then(module => ({ default: module.FAQ })));
+const FeatureCards = React.lazy(() => import('@/components/FeatureCards'));
+const CodeExamples = React.lazy(() => import('@/components/CodeExamples'));
+const FAQ = React.lazy(() => import('@/components/FAQ'));
 
 // Loading组件 - 预定义高度防止CLS
 const ComponentLoading = () => (

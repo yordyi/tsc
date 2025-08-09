@@ -6,9 +6,9 @@ import { Clock, Zap, Smartphone, Code2 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { TimestampConverter } from '@/components/TimestampConverter';
 import { CurrentTimestamp } from '@/components/CurrentTimestamp';
-import { FeatureCards } from '@/components/FeatureCards';
-import { CodeExamples } from '@/components/CodeExamples';
-import { FAQ } from '@/components/FAQ';
+import FeatureCards from '@/components/FeatureCards';
+import CodeExamples from '@/components/CodeExamples';
+import FAQ from '@/components/FAQ';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
