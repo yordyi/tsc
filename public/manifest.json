@@ -1,0 +1,138 @@
+{
+  "name": "TimestampConverter - Professional Unix Time Converter",
+  "short_name": "TimestampConverter",
+  "description": "The fastest, most accurate timestamp converter built for developers. Convert Unix timestamps to human-readable dates instantly.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3b82f6",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["productivity", "developer", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Timestamp Converter",
+      "short_name": "Converter",
+      "description": "Convert Unix timestamps to dates",
+      "url": "/#converter",
+      "icons": [
+        {
+          "src": "/icons/shortcut-converter.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Batch Converter",
+      "short_name": "Batch",
+      "description": "Convert multiple timestamps at once",
+      "url": "/#batch",
+      "icons": [
+        {
+          "src": "/icons/shortcut-batch.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Code Examples",
+      "short_name": "Code",
+      "description": "Programming examples and snippets",
+      "url": "/#examples",
+      "icons": [
+        {
+          "src": "/icons/shortcut-code.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-home.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide",
+      "label": "TimestampConverter main interface on desktop"
+    },
+    {
+      "src": "/screenshots/mobile-converter.png",
+      "type": "image/png",
+      "sizes": "390x844",
+      "form_factor": "narrow",
+      "label": "Timestamp conversion tool on mobile"
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "handle_links": "preferred",
+  "protocol_handlers": [
+    {
+      "protocol": "web+timestamp",
+      "url": "/?timestamp=%s"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://timestampconverter.dev/manifest.json"
+    }
+  ],
+  "prefer_related_applications": false
+}
